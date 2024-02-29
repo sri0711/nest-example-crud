@@ -1,6 +1,13 @@
-import {Injectable} from '@nestjs/common';
+interface UserPersonalDetails {
+	age?: number;
+	gender?: string;
+	dob?: string;
+}
 
-@Injectable()
-export class User {
-	create;
+export interface UserInterface {
+	user_id: string;
+	name: string;
+	mobile: string;
+	personal_details?: UserPersonalDetails;
+	password: string;
 }

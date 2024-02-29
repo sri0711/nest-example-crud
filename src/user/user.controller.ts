@@ -1,6 +1,6 @@
 import {Controller, Get, Param, Res} from '@nestjs/common';
 import {UserService} from './user.service';
-import responder from '../App/Responder';
+import responder from '../app/Responder';
 
 @Controller('user')
 export class UserController {
