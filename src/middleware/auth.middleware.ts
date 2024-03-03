@@ -19,7 +19,7 @@ export class AuthMiddleware implements NestMiddleware {
 			next();
 		}
 		const failureResponse = {
-			statusCode: 401,
+			status_code: 401,
 			success: false,
 			message: 'Authentication Failure'
 		};
