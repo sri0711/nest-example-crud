@@ -1,19 +1,18 @@
 import {Module} from '@nestjs/common';
-import {UserController} from './user/user.controller';
-import {UserService} from './user/user.service';
 import {MongooseModule} from '@nestjs/mongoose';
 import Config from './app/Config';
+import {UserModule} from './user/user.module';
+import {AdminModule} from './admin/admin.module';
+
+console.log(Config);
 
 @Module({
 	imports: [
-		MongooseModule.forRoot(Config?.DB_URL_1, {
-			connectionName: 'users'
-		}),
-		MongooseModule.forRoot(Config?.DB_URL_2, {
-			connectionName: 'admin'
-		})
+		MongooseModule.forRoot(Config?.DB_URL_1),
+		UserModule,
+		AdminModule
 	],
-	controllers: [UserController],
-	providers: [UserService]
+	controllers: [],
+	providers: []
 })
 export class AppModule {}

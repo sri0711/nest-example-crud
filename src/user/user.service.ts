@@ -1,16 +1,27 @@
 import {Injectable} from '@nestjs/common';
-import {UserInterface} from './user';
+import {UserInterface, UserQuery} from './user';
+import {InjectModel} from '@nestjs/mongoose';
+import {Model} from 'mongoose';
+import {nanoid} from 'nanoid';
 
 @Injectable()
 export class UserService {
-	listusers() {
+	constructor(
+		@InjectModel('users')
+		private readonly userModel: Model<UserInterface>
+	) {}
+
+	async listUsers(user_id: string) {
 		try {
+			const query: UserQuery = {};
+			if (user_id) {
+				query.user_id = user_id;
+			}
+
+			const users = await this.userModel.find(query).lean();
 			return {
-				message: 'listusers',
-				data: [
-					{user: 1, name: 'John'},
-					{user: 2, name: 'Jose'}
-				]
+				message: 'users list',
+				data: users
 			};
 		} catch (error) {
 			return {
@@ -22,8 +33,15 @@ export class UserService {
 		}
 	}
 
-	createUser(user: UserInterface) {
+	async createUser(user: UserInterface) {
 		try {
+			user.user_id = nanoid(7);
+			const newUser = new this.userModel(user);
+			await newUser.save();
+			return {
+				message: 'user created',
+				data: newUser
+			};
 		} catch (error) {
 			return {
 				error: {

@@ -11,3 +11,11 @@ export interface UserInterface {
 	personal_details?: UserPersonalDetails;
 	password: string;
 }
+
+export interface UserQuery {
+	user_id?: string;
+	name?: string;
+	mobile?: string;
+	personal_details?: UserPersonalDetails;
+	password?: string;
+}
