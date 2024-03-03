@@ -4,13 +4,16 @@ import Config from './app/Config';
 import {UserModule} from './user/user.module';
 import {AdminModule} from './admin/admin.module';
 
-console.log(Config);
-
 @Module({
 	imports: [
-		MongooseModule.forRoot(Config?.DB_URL_1),
-		UserModule,
-		AdminModule
+		MongooseModule.forRoot(Config?.DB_URL_1, {
+			connectionName: 'users'
+		}),
+		MongooseModule.forRoot(Config?.DB_URL_2, {
+			connectionName: 'admin'
+		}),
+		AdminModule,
+		UserModule
 	],
 	controllers: [],
 	providers: []

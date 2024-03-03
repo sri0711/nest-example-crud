@@ -7,7 +7,7 @@ import {nanoid} from 'nanoid';
 @Injectable()
 export class UserService {
 	constructor(
-		@InjectModel('users')
+		@InjectModel('users', 'users')
 		private readonly userModel: Model<UserInterface>
 	) {}
 

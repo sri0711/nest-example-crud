@@ -11,7 +11,6 @@ export class UserController {
 		@Param('user_id') user_id?: string,
 		@Res() res?: Response
 	): Promise<object> {
-		console.log(user_id);
 		const result = await this?.userService?.listUsers(user_id);
 		return responder(res, result);
 	}
