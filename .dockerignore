@@ -1,0 +1,15 @@
+/test
+/coverage
+/src
+/node_modules
+nest-cli.json
+package-lock.json
+tsconfig.build.json
+README.md
+.eslintrc.js
+.prettierrc.json
+.git
+.dockerignore
+.gitignore
+Dockerfile
+docker-compose.yml
